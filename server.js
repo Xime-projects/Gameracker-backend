@@ -9,7 +9,7 @@ const MONGODB_URL = process.env.MONGODB_URL;
 
 // Middleware para procesar JSON
 app.use(express.json());
-//Conexión al BD y manejo de errores
+//Conexión a la BD y manejo de errores
 mongoose.connect(MONGODB_URL)
   .then(() => {
     console.log('Conexión exitosa a MongoDB Atlas');
@@ -20,6 +20,12 @@ mongoose.connect(MONGODB_URL)
   });
 
 //Rutas
+const gameRoutes = require('./routes/gameRoutes');
+app.use('/api/Games', gameRoutes);
+
+const reviewRoutes = require('./routes/reviewsRoutes');
+app.use('/api/Reviews', reviewRoutes);
+
 app.listen(PORT, () => {
   console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });
