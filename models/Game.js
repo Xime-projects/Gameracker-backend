@@ -7,7 +7,7 @@ const GameSchema = new mongoose.Schema({
         type: String,
         required: [true, 'El nombre es obligatorio' ],
         trim: true,
-        uniuqy: true
+        unique: true
     },
 
     Plataforma: {
