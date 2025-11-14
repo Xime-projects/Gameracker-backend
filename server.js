@@ -21,7 +21,7 @@ mongoose.connect(MONGODB_URL)
 
 //Rutas
 const gameRoutes = require('./routes/gameRoutes');
-app.use('/api/Games', gameRoutes);
+app.use('/games', gameRoutes);
 
 const reviewRoutes = require('./routes/reviewsRoutes');
 app.use('/api/Reviews', reviewRoutes);
