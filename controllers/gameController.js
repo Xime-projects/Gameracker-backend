@@ -75,3 +75,28 @@ exports.deleteGameById = async (req, res) => {
         });
     }
 };
+
+// Crear varios juegos a la vez (bulk insert)
+exports.createGamesBulk = async (req, res) => {
+    try {
+        const { games } = req.body;
+
+        if (!Array.isArray(games)) {
+            return res.status(400).json({ mensaje: "Debes enviar un array llamado 'games'" });
+        }
+
+        const nuevosJuegos = await Juego.insertMany(games);
+
+        res.status(201).json({
+            mensaje: "Juegos creados correctamente",
+            data: nuevosJuegos
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            mensaje: "Error al crear juegos en bloque",
+            error: error.message
+        });
+    }
+};
+
